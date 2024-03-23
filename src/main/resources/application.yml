@@ -1,0 +1,38 @@
+spring:
+  application:
+    name: crud.application
+  jpa:
+    show-sql: true
+    properties:
+      hibernate.format_sql: true
+      hibernate.jdbc.time_zone: UTC
+      hibernate.generate_statistics: false
+      hibernate.jdbc.batch_size: 25
+      hibernate.order_inserts: true
+      hibernate.order_updates: true
+      hibernate.query.fail_on_pagination_over_collection_fetch: true
+      hibernate.query.in_clause_parameter_padding: true
+  profiles:
+    active: dev
+  data:
+    jpa:
+      repositories:
+        bootstrap-mode: deferred
+  task:
+    execution:
+      thread-name-prefix: crud-task-
+      pool:
+        core-size: 2
+        max-size: 50
+        queue-capacity: 10000
+    scheduling:
+      thread-name-prefix: crud-scheduling-
+      pool:
+        size: 2
+server:
+  port: 9090
+  servlet:
+    session:
+      cookie:
+        http-only: true
+    context-path: /crud
